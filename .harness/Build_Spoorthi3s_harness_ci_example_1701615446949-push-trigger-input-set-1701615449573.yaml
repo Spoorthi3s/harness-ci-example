@@ -1,0 +1,14 @@
+inputSet:
+  name: Build_Spoorthi3s_harness_ci_example_1701615446949-push-trigger-input-set
+  identifier: Build_Spoorthi3s_harness_ci_example_1701615446949pushtriggerinputset
+  orgIdentifier: default
+  projectIdentifier: default_project
+  pipeline:
+    identifier: Build_Spoorthi3s_harness_ci_example_1701615446949
+    properties:
+      ci:
+        codebase:
+          build:
+            type: branch
+            spec:
+              branch: <+trigger.branch>
