@@ -18,34 +18,27 @@ pipeline:
           execution:
             steps:
               - step:
-                  identifier: npminstall
-                  name: npm_install
-                  spec:
-                    command: npm install
-                  timeout: ""
                   type: Run
-              - step:
-                  identifier: npmtest
-                  name: npm_test
+                  name: Run_1
+                  identifier: Run_1
                   spec:
-                    command: npm run test
-                  timeout: ""
-                  type: Run
-              - step:
-                  identifier: dockerbuild
-                  name: docker_build
-                  spec:
-                    image: plugins/docker
-                    settings:
-                      dry_run: "true"
-                      repo: hello/world
-                      tags: latest
-                  timeout: ""
-                  type: Plugin
+                    shell: Bash
+                    command: |2-
+                                    - step:
+                                        ...
+                                        spec:
+                                          shell: Bash
+                                          command: |-
+                                            JAVA_VER=$(java -version 2>&1 | head -1 | cut -d'"' -f2 | sed '/^1\./s///' | cut -d'.' -f1)
+                                            if [[ $JAVA_VER == 17 ]]; then
+                                              echo successfully installed $JAVA_VER
+                                            else
+                                              exit 1
+                                            fi
           platform:
-            arch: Amd64
             os: Linux
+            arch: Amd64
           runtime:
-            spec: {}
             type: Cloud
+            spec: {}
         type: CI
